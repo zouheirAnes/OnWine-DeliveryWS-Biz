@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import fr.afcepf.atod.ws.delivery.biz.api.IDeliveryCalculator;
 import fr.afcepf.atod.ws.delivery.dao.api.IDeliveryDao;
 import fr.afcepf.atod.ws.delivery.dto.DTDelivery;
+import fr.afcepf.atod.ws.delivery.dto.DeliveryQuantity;
 import fr.afcepf.atod.ws.delivery.entity.Delivery;
 import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
 
@@ -57,16 +58,21 @@ public class DeliveryCalculatorRestAdapter implements IDeliveryCalculator, Seria
      */
     private DTDelivery entityDelivery2DeliveryDTO(Delivery d) {
         return new DTDelivery(d.getId(),
+                d.getCodePays(),
                 d.getName(),
-                d.getRate());
+                d.getRate(),
+                d.getQuantity());
     }
+    
     @POST
     @Consumes("application/json")
-    @Path("/getRateDeliveryByCountry")
+    @Path("/getRateDeliveryTotal")
     @Override
-    public Double getRateDeliveryByCountry(String srcCountryName) throws DeliveriesWSException {
-        Delivery d = dao.findByName(srcCountryName);
-        return d.getRate();
+    public Double getRateDeliveryTotal(DeliveryQuantity dq) throws DeliveriesWSException {
+            Double result = 0.0;
+            Delivery d = dao.findByNameQuantity(dq.getSrcCountryName(), dq.getQuantity());
+            result = d.getRate();
+            return result;
     }
 
 }

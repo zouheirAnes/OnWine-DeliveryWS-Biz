@@ -11,6 +11,7 @@ import javax.jws.WebService;
 import fr.afcepf.atod.ws.delivery.biz.api.IDeliveryCalculator;
 import fr.afcepf.atod.ws.delivery.dao.api.IDeliveryDao;
 import fr.afcepf.atod.ws.delivery.dto.DTDelivery;
+import fr.afcepf.atod.ws.delivery.dto.DeliveryQuantity;
 import fr.afcepf.atod.ws.delivery.entity.Delivery;
 import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
 
@@ -21,7 +22,7 @@ import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
  *
  */
 @Stateless
-@WebService(endpointInterface = "fr.afcepf.atod." + "ws.delivery.biz.api.IDeliveryCalculator")
+@WebService(endpointInterface = "fr.afcepf.atod." + "ws.delivery.biz.api.IDeliveryCalculator", targetNamespace = "fr.afcepf.al28.delivery")
 public class DeliveryCalculator implements IDeliveryCalculator, Serializable {
 
     /**
@@ -45,16 +46,20 @@ public class DeliveryCalculator implements IDeliveryCalculator, Serializable {
 
     /**
      * Utility method used for converting a DAO entity to a DTO.
-     * @param c {@link Delivery}
+     * 
+     * @param c
+     *            {@link Delivery}
      * @return {@link DTDelivery}
      */
     private DTDelivery entityDelivery2DeliveryDTO(Delivery d) {
-        return new DTDelivery(d.getId(), d.getName(), d.getRate());
+        return new DTDelivery(d.getId(), d.getCodePays(), d.getName(), d.getRate(), d.getQuantity());
     }
 
     @Override
-    public Double getRateDeliveryByCountry(String srcCountryName) throws DeliveriesWSException {
-        Delivery d = dao.findByName(srcCountryName);
-        return d.getRate();
+    public Double getRateDeliveryTotal(DeliveryQuantity dq) throws DeliveriesWSException {
+        Double result = 0.0;
+        Delivery d = dao.findByNameQuantity(dq.getSrcCountryName(), dq.getQuantity());
+        result = d.getRate();
+        return result;
     }
 }

@@ -3,10 +3,10 @@ package fr.afcepf.atod.ws.delivery.biz.api;
 import java.util.List;
 
 import javax.ejb.Remote;
-import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import fr.afcepf.atod.ws.delivery.dto.DTDelivery;
+import fr.afcepf.atod.ws.delivery.dto.DeliveryQuantity;
 import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
 
 /**
@@ -14,7 +14,7 @@ import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
  * @author Zouheir
  */
 @Remote
-@WebService
+@WebService(targetNamespace = "fr.afcepf.al28.delivery")
 public interface IDeliveryCalculator {
     /**
      * Get the complete list of {@link DTDelivery} availables.
@@ -24,12 +24,7 @@ public interface IDeliveryCalculator {
      */
     List<DTDelivery> getAllDeliveries() throws DeliveriesWSException;
 
-    /**
-     * method to get the delivery rate by country.
-     * @param srcCountryName name of country Delivery
-     * @throws DeliveriesWSException custom exception
-     * @return Double rate delivery amount
-     */
-    Double getRateDeliveryByCountry(@WebParam(name = "srcCountryName") String srcCountryName)
-            throws DeliveriesWSException;
+
+    Double getRateDeliveryTotal(DeliveryQuantity dtd) throws DeliveriesWSException;
+
 }
