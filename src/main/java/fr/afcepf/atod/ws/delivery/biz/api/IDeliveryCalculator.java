@@ -14,7 +14,7 @@ import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
  * @author Zouheir
  */
 @Remote
-@WebService(targetNamespace = "fr.afcepf.al28.delivery")
+@WebService(targetNamespace = "http://delivery.afcepf.fr")
 public interface IDeliveryCalculator {
     /**
      * Get the complete list of {@link DTDelivery} availables.

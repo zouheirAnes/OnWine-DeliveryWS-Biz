@@ -22,7 +22,7 @@ import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
  *
  */
 @Stateless
-@WebService(endpointInterface = "fr.afcepf.atod." + "ws.delivery.biz.api.IDeliveryCalculator", targetNamespace = "fr.afcepf.al28.delivery")
+@WebService(endpointInterface = "fr.afcepf.atod." + "ws.delivery.biz.api.IDeliveryCalculator", targetNamespace = "http://delivery.afcepf.fr")
 public class DeliveryCalculator implements IDeliveryCalculator, Serializable {
 
     /**
