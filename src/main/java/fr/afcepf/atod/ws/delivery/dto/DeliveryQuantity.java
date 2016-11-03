@@ -9,7 +9,7 @@ public class DeliveryQuantity implements Serializable {
      */
     private static final long serialVersionUID = 7483777016591547589L;
     
-    private String srcCountryName;
+    private String codePays;
     private Integer quantity;
     
     /**
@@ -23,18 +23,18 @@ public class DeliveryQuantity implements Serializable {
      * @param srcCountryName
      * @param quantity
      */
-    public DeliveryQuantity(String srcCountryName, Integer quantity) {
+    public DeliveryQuantity(String codePays, Integer quantity) {
         super();
-        this.srcCountryName = srcCountryName;
+        this.codePays = codePays;
         this.quantity = quantity;
     }
 
-    public String getSrcCountryName() {
-        return srcCountryName;
+    public String getCodePays() {
+        return codePays;
     }
 
-    public void setSrcCountryName(String srcCountryName) {
-        this.srcCountryName = srcCountryName;
+    public void setCodePays(String codePays) {
+        this.codePays = codePays;
     }
 
     public Integer getQuantity() {
@@ -47,7 +47,7 @@ public class DeliveryQuantity implements Serializable {
 
     @Override
     public String toString() {
-        return "DeliveryQuantity [srcCountryName=" + srcCountryName + ", quantity=" + quantity + "]";
+        return "DeliveryQuantity [codePays=" + codePays + ", quantity=" + quantity + "]";
     }
     
     

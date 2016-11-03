@@ -11,7 +11,6 @@ import javax.jws.WebService;
 import fr.afcepf.atod.ws.delivery.biz.api.IDeliveryCalculator;
 import fr.afcepf.atod.ws.delivery.dao.api.IDeliveryDao;
 import fr.afcepf.atod.ws.delivery.dto.DTDelivery;
-import fr.afcepf.atod.ws.delivery.dto.DeliveryQuantity;
 import fr.afcepf.atod.ws.delivery.entity.Delivery;
 import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
 
@@ -56,10 +55,11 @@ public class DeliveryCalculator implements IDeliveryCalculator, Serializable {
     }
 
     @Override
-    public Double getRateDeliveryTotal(DeliveryQuantity dq) throws DeliveriesWSException {
-        Double result = 0.0;
-        Delivery d = dao.findByNameQuantity(dq.getSrcCountryName(), dq.getQuantity());
-        result = d.getRate();
-        return result;
+    public Double getRateDeliveryTotal(String codePays, Integer quantity) throws DeliveriesWSException {
+      Double result = 0.0;
+      Delivery d = dao.findByCodeQuantity(codePays, quantity);
+      result = d.getRate();
+      return result;
     }
+
 }

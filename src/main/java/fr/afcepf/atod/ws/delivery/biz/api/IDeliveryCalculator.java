@@ -6,7 +6,6 @@ import javax.ejb.Remote;
 import javax.jws.WebService;
 
 import fr.afcepf.atod.ws.delivery.dto.DTDelivery;
-import fr.afcepf.atod.ws.delivery.dto.DeliveryQuantity;
 import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
 
 /**
@@ -25,6 +24,6 @@ public interface IDeliveryCalculator {
     List<DTDelivery> getAllDeliveries() throws DeliveriesWSException;
 
 
-    Double getRateDeliveryTotal(DeliveryQuantity dtd) throws DeliveriesWSException;
+    Double getRateDeliveryTotal(String codePays, Integer quantity) throws DeliveriesWSException;
 
 }

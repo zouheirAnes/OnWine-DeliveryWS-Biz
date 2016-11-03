@@ -15,12 +15,12 @@ import javax.ws.rs.Produces;
 import fr.afcepf.atod.ws.delivery.biz.api.IDeliveryCalculator;
 import fr.afcepf.atod.ws.delivery.dao.api.IDeliveryDao;
 import fr.afcepf.atod.ws.delivery.dto.DTDelivery;
-import fr.afcepf.atod.ws.delivery.dto.DeliveryQuantity;
 import fr.afcepf.atod.ws.delivery.entity.Delivery;
 import fr.afcepf.atod.ws.delivery.exception.DeliveriesWSException;
 
 /**
  * Implementation of rest adapter for the DeliveryCalculator WS.
+ * 
  * @author Zouheir
  *
  */
@@ -38,6 +38,7 @@ public class DeliveryCalculatorRestAdapter implements IDeliveryCalculator, Seria
      */
     @EJB
     private IDeliveryDao dao;
+
     /**
      * test.
      */
@@ -45,34 +46,33 @@ public class DeliveryCalculatorRestAdapter implements IDeliveryCalculator, Seria
     @Path("/listAllDeliveries")
     @Override
     public List<DTDelivery> getAllDeliveries() throws DeliveriesWSException {
-        List<DTDelivery> listDTO  = new ArrayList<DTDelivery>();
+        List<DTDelivery> listDTO = new ArrayList<DTDelivery>();
         for (Delivery d : dao.findAll()) {
             listDTO.add(entityDelivery2DeliveryDTO(d));
         }
         return listDTO;
     }
+
     /**
      * Utility method used for converting a DAO entity to a DTO.
-     * @param d {@link Delivery}
+     * 
+     * @param d
+     *            {@link Delivery}
      * @return {@link DTDelivery}
      */
     private DTDelivery entityDelivery2DeliveryDTO(Delivery d) {
-        return new DTDelivery(d.getId(),
-                d.getCodePays(),
-                d.getName(),
-                d.getRate(),
-                d.getQuantity());
+        return new DTDelivery(d.getId(), d.getCodePays(), d.getName(), d.getRate(), d.getQuantity());
     }
-    
+
     @POST
     @Consumes("application/json")
     @Path("/getRateDeliveryTotal")
     @Override
-    public Double getRateDeliveryTotal(DeliveryQuantity dq) throws DeliveriesWSException {
-            Double result = 0.0;
-            Delivery d = dao.findByNameQuantity(dq.getSrcCountryName(), dq.getQuantity());
-            result = d.getRate();
-            return result;
+    public Double getRateDeliveryTotal(String codePays, Integer quantity) throws DeliveriesWSException {
+        Double result = 0.0;
+        Delivery d = dao.findByCodeQuantity(codePays, quantity);
+        result = d.getRate();
+        return result;
     }
 
 }
