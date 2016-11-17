@@ -1,18 +1,20 @@
 package fr.afcepf.atod.ws.delivery.dto;
 
 import java.io.Serializable;
+
 /**
  * Data Transfer Object of the delivery Entity.
+ * 
  * @author Zouheir
  *
  */
-public class DTDelivery implements Serializable{
+public class DTDelivery implements Serializable {
 
     /**
      * Serialization Id.
      */
     private static final long serialVersionUID = -7776382446851334250L;
-    
+
     /**
      * Unique identifier.
      */
@@ -34,136 +36,134 @@ public class DTDelivery implements Serializable{
      * Delivery quantity.
      */
     private Integer quantity;
+    /**
+     * Delivery international rate
+     */
+    private Double rateInternational;
 
     /**
-     * Default construcor.
+     * @param id
+     * @param name
+     * @param codePays
+     * @param rate
+     * @param quantity
+     * @param rateInternational
+     */
+    public DTDelivery(Integer id, String name, String codePays, Double rate, Integer quantity,
+            Double rateInternational) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.codePays = codePays;
+        this.rate = rate;
+        this.quantity = quantity;
+        this.rateInternational = rateInternational;
+    }
+
+    /**
+     * 
      */
     public DTDelivery() {
         super();
     }
 
     /**
-     * Constructor with parameters.
-     * 
-     * @param paramId
-     *            id
-     * @param paramcodePays
-     *            codePays
-     * @param paramName
-     *            name
-     * @param paramRate
-     *            DTdelivery rate
-     * @param paramQuantity
-     *            DTdelivery quantity
-     */
-    public DTDelivery(Integer paramId, String paramCodePays, String paramName, Double paramRate, Integer paramQuantity) {
-        super();
-        this.id = paramId;
-        this.codePays = paramCodePays;
-        this.name = paramName;
-        this.rate = paramRate;
-        this.quantity = paramQuantity;
-    }
-
-    /**
-     * public accessor for id.
-     * 
-     * @return Integer id
+     * @return the id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * public mutator for id.
-     * 
-     * @param paramId
-     *            id
+     * @param id
+     *            the id to set
      */
-    public void setId(Integer paramId) {
-        id = paramId;
-    }
-    /**
-     * public accessor for codePays.
-     * @return String codePays
-     */
-    public String getCodePays() {
-        return codePays;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
-     * public mutator for codePays.
-     * 
-     * @param paramCodePays
-     *            codePays
-     */
-    public void setCodePays(String paramCodePays) {
-        codePays = paramCodePays;
-    }
-    /**
-     * public accessor for name.
-     * @return String name
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * public mutator for name.
-     * 
-     * @param paramName
-     *            name
+     * @param name
+     *            the name to set
      */
-    public void setName(String paramName) {
-        name = paramName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * public accessor for rate.
-     * 
-     * @return Double rate
+     * @return the codePays
+     */
+    public String getCodePays() {
+        return codePays;
+    }
+
+    /**
+     * @param codePays
+     *            the codePays to set
+     */
+    public void setCodePays(String codePays) {
+        this.codePays = codePays;
+    }
+
+    /**
+     * @return the rate
      */
     public Double getRate() {
         return rate;
     }
 
     /**
-     * public mutator for rate.
-     * 
-     * @param paramRate
-     *            rate
+     * @param rate
+     *            the rate to set
      */
-    public void setRate(Double paramRate) {
-        rate = paramRate;
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
     /**
-     * public accessor for quantity.
-     * 
-     * @return Integer id
+     * @return the quantity
      */
     public Integer getQuantity() {
         return quantity;
     }
 
     /**
-     * public mutator for quantity.
-     * 
-     * @param paramQuantity
-     *            quantity
+     * @param quantity
+     *            the quantity to set
      */
-    public void setQuantity(Integer paramQuantity) {
-        quantity = paramQuantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
-    /*
-     * (non-Javadoc)
-     * 
+
+    /**
+     * @return the rateInternational
+     */
+    public Double getRateInternational() {
+        return rateInternational;
+    }
+
+    /**
+     * @param rateInternational
+     *            the rateInternational to set
+     */
+    public void setRateInternational(Double rateInternational) {
+        this.rateInternational = rateInternational;
+    }
+
+    /**
      * @see java.lang.Object#toString()
      */
-
     @Override
     public String toString() {
         return "DTDelivery [id=" + id + ", name=" + name + ", codePays=" + codePays + ", rate=" + rate + ", quantity="
-                + quantity + "]";
+                + quantity + ", rateInternational=" + rateInternational + "]";
     }
+
 }

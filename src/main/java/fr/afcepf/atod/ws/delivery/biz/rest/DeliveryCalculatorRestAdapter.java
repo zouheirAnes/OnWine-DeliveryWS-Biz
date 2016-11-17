@@ -61,7 +61,7 @@ public class DeliveryCalculatorRestAdapter implements IDeliveryCalculator, Seria
      * @return {@link DTDelivery}
      */
     private DTDelivery entityDelivery2DeliveryDTO(Delivery d) {
-        return new DTDelivery(d.getId(), d.getCodePays(), d.getName(), d.getRate(), d.getQuantity());
+        return new DTDelivery(d.getId(), d.getCodePays(), d.getName(), d.getRate(), d.getQuantity(), d.getRateInternational());
     }
 
     @POST
@@ -73,6 +73,17 @@ public class DeliveryCalculatorRestAdapter implements IDeliveryCalculator, Seria
         Delivery d = dao.findByCodeQuantity(codePays, quantity);
         result = d.getRate();
         return result;
+    }
+
+    @POST
+    @Consumes("application/json")
+    @Path("/getRateDeliveryInternational")
+    @Override
+    public Double getInternationalRateDelivery(String codePays, Integer quantity) throws DeliveriesWSException {
+        Double resultInternational = 0.0;
+        Delivery d = dao.findByCodeQuantity(codePays, quantity);
+        resultInternational = d.getRateInternational();
+        return resultInternational;
     }
 
 }

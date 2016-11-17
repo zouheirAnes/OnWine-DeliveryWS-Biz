@@ -51,7 +51,7 @@ public class DeliveryCalculator implements IDeliveryCalculator, Serializable {
      * @return {@link DTDelivery}
      */
     private DTDelivery entityDelivery2DeliveryDTO(Delivery d) {
-        return new DTDelivery(d.getId(), d.getCodePays(), d.getName(), d.getRate(), d.getQuantity());
+        return new DTDelivery(d.getId(), d.getCodePays(), d.getName(), d.getRate(), d.getQuantity(), d.getRateInternational());
     }
 
     @Override
@@ -60,6 +60,14 @@ public class DeliveryCalculator implements IDeliveryCalculator, Serializable {
       Delivery d = dao.findByCodeQuantity(codePays, quantity);
       result = d.getRate();
       return result;
+    }
+
+    @Override
+    public Double getInternationalRateDelivery(String codePays, Integer quantity) throws DeliveriesWSException {
+        Double resultInternational = 0.0;
+        Delivery d = dao.findByCodeQuantity(codePays, quantity);
+        resultInternational = d.getRateInternational();
+        return resultInternational;
     }
 
 }
